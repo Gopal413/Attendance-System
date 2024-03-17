@@ -1,0 +1,24 @@
+CREATE TABLE `tbl_user_master` (
+  `USER_ID` int NOT NULL AUTO_INCREMENT,
+  `USER_NAME` varchar(50) NOT NULL,
+  `USER_PASSWORD` varchar(50) NOT NULL,
+  `USER_EMAIL_ID` varchar(50) NOT NULL,
+  `USER_MOBILE_NO` mediumtext NOT NULL,
+  `USER_STATUS` varchar(1) DEFAULT 'A',
+  `created_on` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`USER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+CREATE TABLE `tbl_attendance_master` (
+  `ATT_ID` int NOT NULL AUTO_INCREMENT,
+  `ATT_USER_ID` int NOT NULL,
+  `ATT_DATE` date NOT NULL,
+  `att_sign_in` time DEFAULT NULL,
+  `att_sign_out` time DEFAULT NULL,
+  PRIMARY KEY (`ATT_ID`),
+  KEY `att_user_id` (`ATT_USER_ID`),
+  CONSTRAINT `att_user_id` FOREIGN KEY (`ATT_USER_ID`) REFERENCES `tbl_user_master` (`USER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=179 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
